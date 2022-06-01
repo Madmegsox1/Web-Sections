@@ -11,13 +11,14 @@ list<string> f_to_s(ifstream& m_file){
         }
     } else {
         cout << "Invalid file path" << endl;
+        exit(-1);
     }
 
     return lines;
 }
 
 
-list<string> s_split(string val, char separator) {
+list<string> s_split(const string& val, char separator) {
 
     auto* streamData = new stringstream(val);
 

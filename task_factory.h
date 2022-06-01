@@ -9,16 +9,19 @@ using namespace std;
 
 class task_factory{
 public:
-    void queueTasks(list<string>* lines, ifstream& o_file);
+    void queueTasks(list<string>* lines, ifstream& o_file, const string& o_filePath);
 
 private:
-    void headTask(list<string>& lines);
+    void headTask();
 
-    void headerTask(list<string>& lines);
+    void headerTask();
 
-    void footerTask(list<string>& lines);
+    void footerTask();
 
     ifstream* f_file;
+    string& f_path;
+    list<string>& f_lines;
+    string& f_path_split;
 
 };
 

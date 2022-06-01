@@ -10,6 +10,6 @@ using namespace std;
 
 list<string> f_to_s(ifstream& m_file);
 
-list<string> s_split(string val);
+list<string> s_split(const string& val, char separator);
 
 #endif
