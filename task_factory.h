@@ -9,6 +9,8 @@ using namespace std;
 
 class task_factory{
 public:
+
+
     void queueTasks(list<string>* lines, ifstream& o_file, const string& o_filePath);
 
 private:
@@ -19,10 +21,11 @@ private:
     void footerTask();
 
     ifstream* f_file;
-    string& f_path;
-    list<string>& f_lines;
-    string& f_path_split;
+    string f_path;
+    list<string> f_lines;
+    string i_path;
 
+    static string build_string(list<string>& pList);
 };
 
 #endif

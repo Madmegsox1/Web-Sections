@@ -10,31 +10,33 @@ void task_factory::queueTasks(list<string>* lines, ifstream& o_file, const strin
 
     *temp = s_split(f_path, '\\');
 
-    string back = temp->back();
 
-    list<string>::iterator it; // removes the last element of the list
-    it = --temp->end();
-    temp->erase(it);
+    r_last_list(*temp);
 
+    temp->push_back("head.html");
 
-
+    i_path = build_string(*temp);
 
     headTask();
+
+    temp->push_back("header.html");
+    i_path = build_string(*temp);
+
     headerTask();
+
+    temp->push_back("footer.html");
+    i_path = build_string(*temp);
+
     footerTask();
 
     delete temp;
 }
 
 void task_factory::headTask() {
-    string h_dir;
-    cout << "Please enter the dir to Head File";
-    cin >> (h_dir);
-
 
 
     auto *h_file = new ifstream;
-    h_file->open(h_dir);
+    h_file->open(i_path);
 
     list<string> h_lines = f_to_s(*h_file);
 
@@ -49,12 +51,9 @@ void task_factory::headTask() {
 }
 
 void task_factory::headerTask() {
-    string h_dir;
-    cout << "Please enter the dir to Header File";
-    cin >> (h_dir);
 
     auto *h_file = new ifstream;
-    h_file->open(h_dir);
+    h_file->open(i_path);
 
     list<string> h_lines = f_to_s(*h_file);
 
@@ -63,14 +62,35 @@ void task_factory::headerTask() {
 
 void task_factory::footerTask() {
 
-    string f_dir;
-    cout << "Please enter the dir to Footer File";
-    cin >> (f_dir);
 
     auto *fs_file = new ifstream;
-    fs_file->open(f_dir);
+    fs_file->open(i_path);
 
     list<string> h_lines = f_to_s(*fs_file);
     delete fs_file;
 
 }
+
+
+
+
+string task_factory::build_string(list<string>& val){
+    list<string>::iterator it;
+    string r_val;
+    int i = 0;
+    for (it = val.begin();  it != val.end() ; it++) {
+
+        if(i != 0) {
+            r_val = r_val + "\\" + *it;
+        }else {
+            r_val = *it;
+        }
+        i++;
+    }
+
+    r_last_list(val);
+
+    return r_val;
+}
+
+

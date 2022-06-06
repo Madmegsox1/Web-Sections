@@ -12,4 +12,6 @@ list<string> f_to_s(ifstream& m_file);
 
 list<string> s_split(const string& val, char separator);
 
+void r_last_list (list<string>& val);
+
 #endif

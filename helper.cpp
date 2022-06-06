@@ -35,3 +35,10 @@ list<string> s_split(const string& val, char separator) {
 
     return f_list;
 }
+
+void r_last_list(list<string>& val){
+    list<string>::iterator it;
+    it = --val.end();
+    val.erase(it);
+
+}
