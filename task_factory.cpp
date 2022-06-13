@@ -38,13 +38,17 @@ void task_factory::headTask() {
     auto *h_file = new ifstream;
     h_file->open(i_path);
 
-    list<string> h_lines = f_to_s(*h_file);
+    string h_line = f_to_line(*h_file);
 
     list<string>::iterator it;
-    for (it = h_lines.begin(); it != h_lines.end(); ++it){
-
+    for (it= f_lines.begin(); it != f_lines.end(); it++) {
+        string line = *it;
+        if(line == "@head"){
+            // insert code
+        }
 
     }
+
 
 
     delete h_file;
@@ -55,7 +59,7 @@ void task_factory::headerTask() {
     auto *h_file = new ifstream;
     h_file->open(i_path);
 
-    list<string> h_lines = f_to_s(*h_file);
+    string h_line = f_to_line(*h_file);
 
     delete h_file;
 }
@@ -66,7 +70,7 @@ void task_factory::footerTask() {
     auto *fs_file = new ifstream;
     fs_file->open(i_path);
 
-    list<string> h_lines = f_to_s(*fs_file);
+    string h_line = f_to_line(*fs_file);
     delete fs_file;
 
 }

@@ -6,8 +6,14 @@ list<string> f_to_s(ifstream& m_file){
     if(m_file.is_open()){
         string f_char;
         while (m_file){
-            f_char = m_file.get();
-            lines.push_back(f_char);
+            char c = m_file.get();
+
+            if(c == '\n'){
+                lines.push_back(f_char);
+                f_char = "";
+            } else {
+                f_char += c;
+            }
         }
     } else {
         cout << "Invalid file path" << endl;
@@ -41,4 +47,17 @@ void r_last_list(list<string>& val){
     it = --val.end();
     val.erase(it);
 
+}
+
+string f_to_line(ifstream& m_file){
+    string line;
+    if(m_file.is_open()){
+        string f_char;
+        while (m_file){
+            f_char = m_file.get();
+            line += f_char;
+        }
+    }
+
+    return line;
 }

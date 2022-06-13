@@ -14,4 +14,6 @@ list<string> s_split(const string& val, char separator);
 
 void r_last_list (list<string>& val);
 
+string f_to_line(ifstream& m_file);
+
 #endif
