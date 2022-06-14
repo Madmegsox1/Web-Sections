@@ -54,7 +54,7 @@ string f_to_line(ifstream& m_file){
     if(m_file.is_open()){
         string f_char;
         while (m_file){
-            f_char =
+            f_char = m_file.get();
             line += f_char;
         }
     }
