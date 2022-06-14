@@ -30,6 +30,11 @@ void task_factory::queueTasks(list<string>* lines, ifstream& o_file, const strin
     footerTask();
 
     delete temp;
+
+    f_file->close();
+
+    write_file();
+
 }
 
 void task_factory::headTask() {
@@ -42,11 +47,11 @@ void task_factory::headTask() {
 
     list<string>::iterator it;
     for (it= f_lines.begin(); it != f_lines.end(); it++) {
-        string line = *it;
+        string& line(*it);
         if(line == "@head"){
-            // insert code
+            line = h_line;
+            break;
         }
-
     }
 
 
@@ -61,6 +66,16 @@ void task_factory::headerTask() {
 
     string h_line = f_to_line(*h_file);
 
+    list<string>::iterator it;
+    for (it= f_lines.begin(); it != f_lines.end(); it++) {
+        string& line(*it);
+        if(line == "@header"){
+            line = h_line;
+            break;
+        }
+    }
+
+
     delete h_file;
 }
 
@@ -71,6 +86,18 @@ void task_factory::footerTask() {
     fs_file->open(i_path);
 
     string h_line = f_to_line(*fs_file);
+
+
+    list<string>::iterator it;
+    for (it= f_lines.begin(); it != f_lines.end(); it++) {
+        string& line(*it);
+        if(line == "@footer"){
+            line = h_line;
+            break;
+        }
+    }
+
+
     delete fs_file;
 
 }
@@ -97,4 +124,23 @@ string task_factory::build_string(list<string>& val){
     return r_val;
 }
 
+
+
+void task_factory::write_file(){
+    list<string>::iterator it;
+    fstream f_out;
+    f_out.open(f_path);
+
+    if(!f_out.is_open()){
+        cout << "Cannot open file";
+        exit(-1);
+    }
+
+
+    for (it = f_lines.begin(); it != f_lines.end() ; it++) {
+        f_out << *it << endl;
+    }
+
+    f_out.close();
+}
 

@@ -20,6 +20,8 @@ private:
 
     void footerTask();
 
+    void write_file();
+
     ifstream* f_file;
     string f_path;
     list<string> f_lines;
